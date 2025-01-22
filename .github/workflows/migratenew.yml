@@ -7,7 +7,7 @@ jobs:
   migrate:
     runs-on:
     - self-hosted
-    - ubuntu
+    - ubuntu-latest
 
     steps:
     - name: Install GEI
