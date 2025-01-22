@@ -6,7 +6,6 @@ on:
 jobs:
   migrate:
     runs-on:
-    - self-hosted
     - ubuntu-latest
 
     steps:
