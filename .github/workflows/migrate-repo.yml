@@ -1,5 +1,5 @@
 name: Migrate Repository
-'on':
+on:
   workflow_dispatch: null
 jobs:
   migrate:
