@@ -1,0 +1,30 @@
+name: Migrate Repository New
+
+on:
+  workflow_dispatch:
+
+jobs:
+  migrate:
+    runs-on:
+    - self-hosted
+    - ubuntu
+
+    steps:
+    - name: Install GEI
+      run: |
+        if ! gh extension list | grep -q github/gh-gei; then
+          gh extension install github/gh-gei
+        fi
+      env:
+        GH_TOKEN: ${{ secrets.TARGET_MIGRATION_TOKEN }}
+
+    - name: Migrate Repo
+      uses: coaa/ghe-migration-scripts/migrate-repo@v1
+      with:
+        source_repo: theegalahub/test
+        target_repo: sapthagirireddy/destrepo
+        source_token: ${{ secrets.SOURCE_MIGRATION_TOKEN }}
+        target_token: ${{ secrets.TARGET_MIGRATION_TOKEN }}
+        visibility: private
+        users_to_assign_admin: theegalahub
+        users_to_assign_write: theegalahub
